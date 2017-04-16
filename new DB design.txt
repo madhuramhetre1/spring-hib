@@ -1,0 +1,105 @@
+SQL> create table Login
+  2          (
+  3          login_ID number(4) PRIMARY KEY,
+  4          role varchar2(20),
+  5          username varchar2(20),
+  6          password varchar2(20));
+
+Table created.
+
+SQL> descr Login;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ LOGIN_ID                                  NOT NULL NUMBER(4)
+ ROLE                                               VARCHAR2(20)
+ USERNAME                                           VARCHAR2(20)
+ PASSWORD                                           VARCHAR2(20)
+
+SQL> drop table Employee;
+
+Table dropped.
+
+SQL> create table Employee
+  2      (
+  3        emp_ID number(4) PRIMARY KEY,
+  4        login_ID number(4) constraint FK_EMP_LOGIN_ID references Login(login_
+ID),
+  5        emp_name varchar2(20),
+  6        emp_address varchar2(25),
+  7        gender varchar2(20),
+  8        dob date,
+  9        qualification varchar2(20),
+ 10        designation varchar2(20),
+ 11        mobile_no number(20),
+ 12        email_ID varchar2(20));
+
+Table created.
+
+SQL> descr Employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ EMP_ID                                    NOT NULL NUMBER(4)
+ LOGIN_ID                                           NUMBER(4)
+ EMP_NAME                	                           VARCHAR2(20)
+ EMP_ADDRESS                                        VARCHAR2(25)
+ GENDER                                             VARCHAR2(5)
+ DOB                                                DATE
+ QUALIFICATION                                      VARCHAR2(20)
+ DESIGNATION                                        VARCHAR2(20)
+ MOBILE_NO                                          NUMBER(20)
+ EMAIL_ID                                           VARCHAR2(20)
+
+SQL> create table Consignment
+  2  (
+  3   consignment_ID number(5) PRIMARY KEY,
+  4   login_ID number(4) constraint FK_CONS_LOGIN_ID references Login(login_ID),
+  5   consignee_name varchar2(20),
+  6   consignee_address varchar2(25),
+  7   consignee_mobileno number(20),
+  8   consignment_date date,
+  9   origin_place varchar2(20),
+ 10   destination_place varchar2(20),
+ 11   weight number(8,2),
+ 12   rate number(8,2),
+ 13   delivery_boy varchar2(20),
+ 14   delivery_date date,
+ 15   last_modified varchar2(20),
+ 16   status varchar2(20));
+
+Table created.
+
+SQL> descr Consignment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ CONSIGNMENT_ID                            NOT NULL NUMBER(5)
+ LOGIN_ID                                           NUMBER(4)
+ CONSIGNEE_NAME                                     VARCHAR2(20)
+ CONSIGNEE_ADDRESS                                  VARCHAR2(25)
+ CONSIGNEE_MOBILENO                                 NUMBER(20)
+ CONSIGNMENT_DATE                                   DATE
+ ORIGIN_PLACE                                       VARCHAR2(20)
+ DESTINATION_PLACE                                  VARCHAR2(20)
+ WEIGHT                                             NUMBER(8,2)
+ RATE                                               NUMBER(8,2)
+ DELIVERY_BOY                                       VARCHAR2(20)
+ DELIVERY_DATE                                      DATE
+ LAST_MODIFIED                                      VARCHAR2(20)
+ STATUS                                             VARCHAR2(20)                                             VARCHAR2(20)
+
+SQL>  create sequence seq_Login_ID Minvalue 1 start with 200 increment by 1 Noca
+che;
+
+Sequence created.
+
+SQL>  create sequence seq_Consignment_ID Minvalue 1 start with 300 increment by
+1 Nocache;
+
+Sequence created.
+
+SQL>  create sequence seq_Employee_ID Minvalue 1 start with 400 increment by 1 N
+ocache;
+
+Sequence created.
